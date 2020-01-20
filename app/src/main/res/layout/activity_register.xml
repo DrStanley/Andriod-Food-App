@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_imageR"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bug"
+                app:civ_border_color="#a45252"
+                app:civ_border_width="2dp" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/name"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="10dp"
+                android:hint="Full Name"
+                android:inputType="textCapWords"
+                android:textColor="#000"
+                app:met_floatingLabel="normal" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:drawablePadding="10dp"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="#000"
+                app:met_floatingLabel="normal" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/phn"
+                android:layout_width="300dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_phone_android_24dp"
+                android:drawablePadding="10dp"
+                android:hint="@string/phone_number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+                android:textColor="#000"
+                app:met_floatingLabel="normal"
+                app:met_maxCharacters="11"
+                app:met_minCharacters="11"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/pwd"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:drawablePadding="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                app:met_floatingLabel="normal"
+                app:met_minCharacters="6" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/cpwd"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:drawablePadding="10dp"
+                android:hint="Comfirm Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                app:met_floatingLabel="normal"
+                app:met_minCharacters="6" />
+
+            <ImageButton
+                android:id="@+id/register"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_check_circle_black_24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

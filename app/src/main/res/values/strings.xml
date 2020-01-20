@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">vEgAs fOOD</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="food_type">Choose Food Type: </string>
+    <string name="food_quantity">Choose Food Quantity: </string>
+    <string name="toppings">Toppings: </string>
+    <string name="collection">Collection mode: </string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="read_terms_and_condition">Read Terms And Condition</string>
+    <string name="login_to">Login To</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Reset Password?</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+</resources>
