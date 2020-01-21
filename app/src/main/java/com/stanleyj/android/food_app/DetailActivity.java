@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView TtextView, DtextView, PtextView, StextView, qty;
     ImageView img1, img2, img3;
-    String ans, price, spin, toppings = "";
+    String ans= "", price;
     int h20s = 0, a = 0, quant;
     EditText editText;
     String ids, title;
@@ -205,7 +205,7 @@ public class DetailActivity extends AppCompatActivity {
             if (qty.getText().equals("0")) {
                 Toast.makeText(getApplicationContext(), "Please choose the food quantity", Toast.LENGTH_SHORT).show();
                 return;
-            } if (ans.equals(null)) {
+            } if (ans.equals("")) {
                 Toast.makeText(getApplicationContext(), "Please Select Collection mode", Toast.LENGTH_SHORT).show();
                 return;
             }
