@@ -63,21 +63,7 @@ public class SummaryActivity extends AppCompatActivity {
         pay = findViewById(R.id.payment);
 
         try {
-            String cardNumber = "4084084084084081";
 
-            int expiryMonth = 11; //any month in the future
-
-            int expiryYear = 2021; // any year in the future
-
-            String cvv = "408";
-            final Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
-            card.isValid();
-            pay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(),  card.isValid()+"", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 //            Toast.makeText(SummaryActivity.this, t + " and " + tops, Toast.LENGTH_SHORT).show();
             if (!tops) {

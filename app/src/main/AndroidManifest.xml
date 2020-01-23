@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.stanleyj.android.food_app">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".PaymentActivity"></activity>
+
         <meta-data
             android:name="co.paystack.android.PublicKey"
-            android:value="pk_test_2aba58ee31f91638956ab4d35f1bcbecf3c62e2c"/>
+            android:value="pk_test_2aba58ee31f91638956ab4d35f1bcbecf3c62e2c" />
 
-        <activity android:name=".UpdateRemoveActivity"/>
+        <activity android:name=".UpdateRemoveActivity" />
         <activity android:name=".Updatefoodctivity" />
         <activity android:name=".admin.RemovefoodActivity" />
         <activity android:name=".admin.AdminMenuActivity" />
