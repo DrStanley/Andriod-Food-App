@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".PaymentActivity">
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/back4"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,13 +31,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_text"
                 android:drawableLeft="@drawable/card"
                 android:drawablePadding="5dp"
                 android:hint="Card Number"
                 android:inputType="number"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textColorHint="#D3D3D3" />
 
             <LinearLayout
@@ -52,13 +51,12 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text"
                     android:drawableLeft="@drawable/date"
                     android:drawablePadding="5dp"
                     android:hint="Expiry Month"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textColorHint="#D3D3D3" />
 
                 <EditText
@@ -67,13 +65,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text"
                     android:drawableLeft="@drawable/date"
                     android:drawablePadding="5dp"
                     android:hint="Expiry Year"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textColorHint="#D3D3D3" />
 
             </LinearLayout>
@@ -83,23 +80,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_text"
                 android:drawableLeft="@drawable/card"
                 android:drawablePadding="5dp"
                 android:hint="CVV"
                 android:inputType="number"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textColorHint="#D3D3D3" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="pay"
-                android:textStyle="bold"
-                android:background="@android:drawable/button_onoff_indicator_off"
                 android:text="Make Payment"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
 

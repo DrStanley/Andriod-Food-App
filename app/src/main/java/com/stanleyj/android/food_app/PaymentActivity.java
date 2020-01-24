@@ -2,7 +2,6 @@ package com.stanleyj.android.food_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,9 +25,9 @@ import co.paystack.android.model.Charge;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    private Transaction transaction;
     private Charge charge;
     private ProgressDialog dialog;
+    private Transaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,61 @@ public class PaymentActivity extends AppCompatActivity {
         String cvv = "408";
         final Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
         card.isValid();
-        Toast.makeText(getApplicationContext(),  card.isValid()+"", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ""+card.isValid()+" "+card.getAddressCountry(), Toast.LENGTH_SHORT).show();
+    }
+    public void pay(View view) {
+//        int expiryMonth = 0;
+//        int expiryYear = 0;
+//        EditText etCardNumber = findViewById(R.id.card_number);
+//        EditText etExpiryMonth = findViewById(R.id.month);
+//        EditText etExpiryYear = findViewById(R.id.year);
+//        EditText etCVC = findViewById(R.id.cvc);
+//
+//        String cardNumber = etCardNumber.getText().toString();
+//        if(!etExpiryMonth.getText().toString().isEmpty()) {
+//            expiryMonth = Integer.parseInt(etExpiryMonth.getText().toString());
+//        }
+//        if(!etExpiryMonth.getText().toString().isEmpty()) {
+//            expiryYear = Integer.parseInt(etExpiryYear.getText().toString());
+//        }
+//        String cvv = etCVC.getText().toString();
+        String cardNumber = "4084084084084081";
 
+        int expiryMonth = 11; //any month in the future
+
+        int expiryYear = 2021; // any year in the future
+
+        String cvv = "408";
+
+        Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
+        if (card.isValid()) {
+            charge = new Charge();
+            charge.setCard(card);
+
+            dialog = new ProgressDialog(PaymentActivity.this);
+            dialog.setMessage("Performing transaction... please wait");
+            dialog.show();
+
+            charge.setAmount(1050);
+            charge.setEmail("listanley50@gmail.com");
+            charge.setReference("ChargedFromAndroid_" + Calendar.getInstance().getTimeInMillis());
+            try {
+                charge.putCustomField("Charged From", "Android SDK");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            chargeCard();
+            //Function to Charge user here
+        }
+        else {
+            Toast.makeText(PaymentActivity.this, "Invalid card details", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void dismissDialog() {
+        if ((dialog != null) && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 
     private void chargeCard() {
@@ -93,61 +145,6 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void pay(View view) {
-        int expiryMonth = 0;
-        int expiryYear = 0;
-        EditText etCardNumber = findViewById(R.id.card_number);
-        EditText etExpiryMonth = findViewById(R.id.month);
-        EditText etExpiryYear = findViewById(R.id.year);
-        EditText etCVC = findViewById(R.id.cvc);
-
-        String cardNumber = etCardNumber.getText().toString();
-        if(!etExpiryMonth.getText().toString().isEmpty()) {
-            expiryMonth = Integer.parseInt(etExpiryMonth.getText().toString());
-        }
-        if(!etExpiryMonth.getText().toString().isEmpty()) {
-            expiryYear = Integer.parseInt(etExpiryYear.getText().toString());
-        }
-        String cvv = etCVC.getText().toString();
-         cardNumber = "4084084084084081";
-
-         expiryMonth = 11; //any month in the future
-         cvv = "408";
-
-         expiryYear = 2021; // any year in the future
-        Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
-        if (card.isValid()) {
-            Toast.makeText(this, "Card is valid: "+card.isValid(), Toast.LENGTH_SHORT).show();
-            charge = new Charge();
-            charge.setCard(card);
-
-            dialog = new ProgressDialog(PaymentActivity.this);
-            dialog.setMessage("Performing transaction... please wait");
-            dialog.show();
-
-            charge.setAmount(1050);
-            charge.setEmail("listanley50@gmail.com");
-            charge.setReference("ChargedFromAndroid_" + Calendar.getInstance().getTimeInMillis());
-            try {
-                charge.putCustomField("Charged From", "Android SDK");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            chargeCard();
-            //Function to Charge user here
-        }
-        else {
-            Toast.makeText(PaymentActivity.this, "Invalid card details", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void dismissDialog() {
-        if ((dialog != null) && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
-
     private class verifyOnServer extends AsyncTask<String, Void, String> {
         private String reference;
         private String error;
@@ -184,4 +181,6 @@ public class PaymentActivity extends AppCompatActivity {
             return null;
         }
     }
+
 }
+

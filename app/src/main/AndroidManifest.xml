@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.stanleyj.android.food_app">
+    package="com.stanleyj.android.food_app" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PaymentActivity"></activity>
+        tools:ignore="GoogleAppIndexingWarning" >
+        <activity android:name=".PaymentActivity" >
+        </activity>
 
         <meta-data
             android:name="co.paystack.android.PublicKey"
@@ -32,7 +33,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgotActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

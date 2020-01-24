@@ -2,6 +2,7 @@ package com.stanleyj.android.food_app;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +32,6 @@ public class SummaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-        PaystackSdk.initialize(getApplicationContext());
 
         // action bar for title
         getSupportActionBar().setTitle("Summary");
@@ -64,6 +64,13 @@ public class SummaryActivity extends AppCompatActivity {
 
         try {
 
+            pay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    startActivity(new Intent(SummaryActivity.this,PaymentActivity.class));
+                }
+            });
 
 //            Toast.makeText(SummaryActivity.this, t + " and " + tops, Toast.LENGTH_SHORT).show();
             if (!tops) {
