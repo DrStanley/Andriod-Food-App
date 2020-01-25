@@ -91,9 +91,14 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/paypal"
                 android:onClick="pay"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="5000"
                 android:text="Make Payment"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="#fff" />
 
         </LinearLayout>
 

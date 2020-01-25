@@ -244,7 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/paypal"
-            android:text="Pay with master card"
+            android:text="Pay with card"
             android:textColor="#fff" />
 
     </LinearLayout>

@@ -1,13 +1,20 @@
 package com.stanleyj.android.food_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
@@ -28,12 +35,19 @@ public class PaymentActivity extends AppCompatActivity {
     private Charge charge;
     private ProgressDialog dialog;
     private Transaction transaction;
+    String amount;
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    String ema, aha, phn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         PaystackSdk.initialize(getApplicationContext());
+
+        amount = getIntent().getStringExtra("amount");
 
         String cardNumber = "4084084084084081";
 
@@ -44,8 +58,34 @@ public class PaymentActivity extends AppCompatActivity {
         String cvv = "408";
         final Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
         card.isValid();
-        Toast.makeText(this, ""+card.isValid()+" "+card.getAddressCountry(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + card.isValid() + " " + card.getAddressCountry(), Toast.LENGTH_SHORT).show();
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+        databaseReference = firebaseDatabase.getReference("Users").child(firebaseAuth.getUid()).child("Profile");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    aha = dataSnapshot.child("name").getValue(String.class);
+                    phn = dataSnapshot.child("phone_number").getValue(String.class);
+                    ema = firebaseAuth.getCurrentUser().getEmail();
+
+                } catch (Exception f) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
     public void pay(View view) {
 //        int expiryMonth = 0;
 //        int expiryYear = 0;
@@ -72,6 +112,8 @@ public class PaymentActivity extends AppCompatActivity {
 
         Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
         if (card.isValid()) {
+            card.setName(aha);
+
             charge = new Charge();
             charge.setCard(card);
 
@@ -79,8 +121,9 @@ public class PaymentActivity extends AppCompatActivity {
             dialog.setMessage("Performing transaction... please wait");
             dialog.show();
 
-            charge.setAmount(1050);
-            charge.setEmail("listanley50@gmail.com");
+//            in kobo
+            charge.setAmount(Integer.parseInt(amount));
+            charge.setEmail(ema);
             charge.setReference("ChargedFromAndroid_" + Calendar.getInstance().getTimeInMillis());
             try {
                 charge.putCustomField("Charged From", "Android SDK");
@@ -89,8 +132,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
             chargeCard();
             //Function to Charge user here
-        }
-        else {
+        } else {
             Toast.makeText(PaymentActivity.this, "Invalid card details", Toast.LENGTH_LONG).show();
         }
     }
@@ -145,6 +187,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
     }
+
     private class verifyOnServer extends AsyncTask<String, Void, String> {
         private String reference;
         private String error;

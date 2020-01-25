@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import co.paystack.android.PaystackSdk;
 import co.paystack.android.model.Card;
 
@@ -68,7 +72,7 @@ public class SummaryActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(SummaryActivity.this,PaymentActivity.class));
+                    startActivity(new Intent(SummaryActivity.this,PaymentActivity.class).putExtra("amount",t+"0"));
                 }
             });
 

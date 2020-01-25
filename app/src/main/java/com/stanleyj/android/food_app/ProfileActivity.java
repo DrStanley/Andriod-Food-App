@@ -37,11 +37,11 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        em = (TextView) findViewById(R.id.mail);
-        imageView = (ImageView) findViewById(R.id.profile_image);
-        nam = (EditText) findViewById(R.id.nameP);
-        usd = (EditText) findViewById(R.id.usd);
-        phn = (EditText) findViewById(R.id.phnP);
+        em = findViewById(R.id.mail);
+        imageView = findViewById(R.id.profile_image);
+        nam = findViewById(R.id.nameP);
+        usd = findViewById(R.id.usd);
+        phn = findViewById(R.id.phnP);
         usd.setEnabled(false);
         nam.setEnabled(false);
         nam.setEnabled(false);
