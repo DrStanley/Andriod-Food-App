@@ -100,7 +100,7 @@ public class MainMenuActivity extends AppCompatActivity {
         getSupportActionBar();
         getSupportActionBar().setTitle("Main Menu");
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerview);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         // send query to firebase
